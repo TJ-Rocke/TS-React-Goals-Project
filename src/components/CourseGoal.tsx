@@ -1,4 +1,4 @@
-import { FC, type PropsWithChildren, type ReactNode } from "react"; // using type keyword makes it clear to the build tool that the import can be removed from the code that will later run in the browser because the browser wont be able to deal with 'types' anyways (ReactNode is a type, not an object or method etc)
+import { type PropsWithChildren, type ReactNode } from "react"; // using type keyword makes it clear to the build tool that the import can be removed from the code that will later run in the browser because the browser wont be able to deal with 'types' anyways (ReactNode is a type, not an object or method etc)
 
 // one way of creating props object
 // interface CourseGoalProps {
