@@ -13,6 +13,7 @@ export type CourseGoal = {
 export default function App() {
   // function variables
   const [goals, setGoals] = useState<CourseGoal[]>([]); // useState is generic - type can be set in <>
+
   // function handlers
   function handleAddGoal() {
     setGoals((prevGoals) => {
@@ -24,6 +25,10 @@ export default function App() {
       return [...prevGoals, newGoal];
     });
   }
+
+  function handleDeleteGoal(id: number) {
+    setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
+  }
   // returned TSX
   return (
     <main>
@@ -31,7 +36,7 @@ export default function App() {
         <h1>Your Course Goals</h1>
       </Header>
       <button onClick={handleAddGoal}>Add Goal</button>
-      <CourseGoalList goals={goals} />
+      <CourseGoalList goals={goals} onDeleteGoal={handleDeleteGoal} />
     </main>
   );
 }

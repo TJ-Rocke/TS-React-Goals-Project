@@ -11,14 +11,20 @@ import CourseGoal from "./CourseGoal";
 // types
 type CourseGoalListProps = {
   goals: CourseGoalType[]; // this tells TS that its is an array of objects
+  onDeleteGoal: (id: number) => void;
 };
 
-function CourseGoalList({ goals }: CourseGoalListProps) {
+function CourseGoalList({ goals, onDeleteGoal }: CourseGoalListProps) {
   return (
     <ul>
       {goals.map((goal) => (
         <li key={goal?.id}>
-          <CourseGoal title={goal?.title} description={goal?.description}>
+          <CourseGoal
+            id={goal.id}
+            title={goal?.title}
+            description={goal?.description}
+            onDelete={onDeleteGoal}
+          >
             <p>Or Top Down ⚛️</p>
           </CourseGoal>
         </li>

@@ -9,11 +9,19 @@ import { type PropsWithChildren, type ReactNode } from "react"; // using type ke
 // ---------
 // another way // props with children is a type that allows you to add props on top of accepting children props
 type CourseGoalProps = PropsWithChildren<{
+  id: number;
   title: string;
   description: string;
+  onDelete: (id: number) => void;
 }>;
 
-export default function ({ title, description, children }: CourseGoalProps) {
+export default function ({
+  id,
+  title,
+  description,
+  children,
+  onDelete,
+}: CourseGoalProps) {
   return (
     <article>
       <div>
@@ -21,7 +29,7 @@ export default function ({ title, description, children }: CourseGoalProps) {
         <p>{description}</p>
         {children}
       </div>
-      <button>Delete</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </article>
   );
 }
