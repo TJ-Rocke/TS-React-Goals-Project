@@ -15,20 +15,31 @@ export default function App() {
   const [goals, setGoals] = useState<CourseGoal[]>([]); // useState is generic - type can be set in <>
   // function handlers
   function handleAddGoal() {
-    setGoals();
+    setGoals((prevGoals) => {
+      const newGoal: CourseGoal = {
+        title: "Learning TS and React",
+        description: "Learn it in depth",
+        id: Math.random(),
+      };
+      return [...prevGoals, newGoal];
+    });
   }
+  // returned TSX
   return (
     <main>
       <Header image={{ src: goalsImg, alt: "A list of goals" }}>
         <h1>Your Course Goals</h1>
       </Header>
       <button onClick={handleAddGoal}>Add Goal</button>
-      <CourseGoal
-        title="Learn React + TS"
-        description="Learn it from the ground up"
-      >
-        <p>Or Top Down ⚛️</p>
-      </CourseGoal>
+      <ul>
+        {goals.map((goal) => (
+          <li key={goal.id}>
+            <CourseGoal title={goal.title} description={goal.description}>
+              <p>Or Top Down ⚛️</p>
+            </CourseGoal>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }
