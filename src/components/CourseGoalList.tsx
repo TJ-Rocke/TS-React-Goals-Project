@@ -25,7 +25,7 @@ function CourseGoalList({ goals, onDeleteGoal }: CourseGoalListProps) {
             description={goal?.description}
             onDelete={onDeleteGoal}
           >
-            <p>Or Top Down ⚛️</p>
+            <p>⚛️</p>
           </CourseGoal>
         </li>
       ))}

@@ -1,15 +1,24 @@
 import { useRef, type FormEvent } from "react";
 
-function NewGoal() {
+// prop types
+type NewGoalProps = {
+  onAddGoal: (goal: string, description: string) => void;
+};
+
+function NewGoal({ onAddGoal }: NewGoalProps) {
   // using useRef to extract values
   const goal = useRef<HTMLInputElement>(null); // * default starting value is 'undefined', P.S. 'undefined' is not having a value at all
   const description = useRef<HTMLInputElement>(null); // * 'null' is not having a value "yet"
+
   // handler functions
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const enteredGoal = goal.current!.value; // * '!' tells ts the value will NEVER be null. Be careful because this can crash an app! CAN still use a '?' as shown below
-    const enteredSummary = description.current?.value;
+    const enteredGoal = goal.current!.value; // * '!' tells ts the value will NEVER be null. Be careful because this can crash an app!
+    const enteredSummary = description.current!.value;
+
+    event.currentTarget.reset(); // this resets the form inputs after submission
+    onAddGoal(enteredGoal, enteredSummary);
   }
   return (
     <form onSubmit={handleSubmit}>
