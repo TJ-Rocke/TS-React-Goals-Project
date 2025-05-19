@@ -6,7 +6,9 @@ export default function App() {
       <CourseGoal
         title="Learn React + TS"
         description="Learn it from the ground up"
-      />
+      >
+        <p>Or Top Down ⚛️</p>
+      </CourseGoal>
     </main>
   );
 }
